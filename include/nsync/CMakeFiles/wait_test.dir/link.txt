@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/wait_test.dir/testing/wait_test.c.o  -o wait_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

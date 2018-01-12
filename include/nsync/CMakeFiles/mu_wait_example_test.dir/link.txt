@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/mu_wait_example_test.dir/testing/mu_wait_example_test.c.o  -o mu_wait_example_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

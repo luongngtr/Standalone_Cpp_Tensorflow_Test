@@ -1,0 +1,14 @@
+/usr/lib/libnsync.a
+/usr/include/nsync.h
+/usr/include/nsync_atomic.h
+/usr/include/nsync_counter.h
+/usr/include/nsync_cpp.h
+/usr/include/nsync_cv.h
+/usr/include/nsync_debug.h
+/usr/include/nsync_mu.h
+/usr/include/nsync_mu_wait.h
+/usr/include/nsync_note.h
+/usr/include/nsync_once.h
+/usr/include/nsync_time.h
+/usr/include/nsync_time_internal.h
+/usr/include/nsync_waiter.h

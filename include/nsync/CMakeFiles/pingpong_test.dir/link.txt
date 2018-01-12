@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/pingpong_test.dir/testing/pingpong_test.c.o  -o pingpong_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

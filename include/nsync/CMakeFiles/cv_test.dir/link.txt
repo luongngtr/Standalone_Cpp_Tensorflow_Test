@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/cv_test.dir/testing/cv_test.c.o  -o cv_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

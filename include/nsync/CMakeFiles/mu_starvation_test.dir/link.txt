@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/mu_starvation_test.dir/testing/mu_starvation_test.c.o  -o mu_starvation_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/cv_wait_example_test.dir/testing/cv_wait_example_test.c.o  -o cv_wait_example_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/dll_test.dir/testing/dll_test.c.o  -o dll_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

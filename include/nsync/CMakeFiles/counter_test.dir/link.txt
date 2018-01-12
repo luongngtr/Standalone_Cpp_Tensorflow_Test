@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/counter_test.dir/testing/counter_test.c.o  -o counter_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

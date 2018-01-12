@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/once_test.dir/testing/once_test.c.o  -o once_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

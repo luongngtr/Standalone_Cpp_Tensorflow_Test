@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/mu_test.dir/testing/mu_test.c.o  -o mu_test -rdynamic -pthread libnsync_test.a libnsync.a -pthread 

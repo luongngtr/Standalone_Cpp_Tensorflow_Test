@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnsync_test.a  CMakeFiles/nsync_test.dir/testing/array.c.o CMakeFiles/nsync_test.dir/testing/atm_log.c.o CMakeFiles/nsync_test.dir/testing/closure.c.o CMakeFiles/nsync_test.dir/testing/smprintf.c.o CMakeFiles/nsync_test.dir/testing/testing.c.o CMakeFiles/nsync_test.dir/testing/time_extra.c.o CMakeFiles/nsync_test.dir/platform/posix/src/start_thread.c.o
+/usr/bin/ranlib libnsync_test.a

@@ -1,0 +1,89 @@
+References:
+	1/ To build .so libraries of c++ tensorflow
+		https://github.com/hhzrz/tensorflow-cpp
+
+	2/ To test the built .so libraries
+		http://tuatini.me/building-tensorflow-as-a-standalone-project/
+		(everything needed is in the repository "Standalone_Cpp_Tensorflow_Test")
+		(Do not need to follow STEP 1 and 2, just do only STEP 3 to test)
+    
+----------------------------------------------------------------------
+// STEP 1
+$ mkdir ../tf_test
+$ nano ../tf_test/test.cpp
+// The above command creates a new file named "test.cpp"
+// The following is its content
+-----------------------------------------------------------------------
+#include "tensorflow/cc/client/client_session.h"
+#include "tensorflow/cc/ops/standard_ops.h"
+#include "tensorflow/core/framework/tensor.h"
+
+int main() {
+  using namespace tensorflow;
+  using namespace tensorflow::ops;
+  Scope root = Scope::NewRootScope();
+  // Matrix A = [3 2; -1 0]
+  auto A = Const(root, { {3.f, 2.f}, {-1.f, 0.f}});
+  // Vector b = [3 5]
+  auto b = Const(root, { {3.f, 5.f}});
+  // v = Ab^T
+  auto v = MatMul(root.WithOpName("v"), A, b, MatMul::TransposeB(true));
+  std::vector<Tensor> outputs;
+  ClientSession session(root);
+  // Run and fetch v
+  TF_CHECK_OK(session.Run({v}, &outputs));
+  // Expect outputs[0] == [19; -3]
+  LOG(INFO) << outputs[0].matrix<float>();
+  return 0;
+}
+-----------------------------------------------------------------------
+
+// Compile the Protobuf dependencies 
+
+$ mkdir /tmp/proto
+$ tensorflow/contrib/makefile/download_dependencies.sh
+$ cd tensorflow/contrib/makefile/downloads/protobuf/
+$ ./autogen.sh
+$ ./configure --prefix=/tmp/proto/
+$ make
+$ make install
+
+// Compile Eigen
+
+$ mkdir /tmp/eigen
+$ cd ../eigen
+$ mkdir build_dir
+$ cd build_dir
+$ cmake -DCMAKE_INSTALL_PREFIX=/tmp/eigen/ ../
+$ make install
+$ cd ../../../../../..
+
+// STEP 2
+// Copy the libraries to the project folder
+
+$ mkdir ../tf_test/lib
+$ cp bazel-bin/tensorflow/libtensorflow_cc.so ../tf_test/lib/
+$ cp bazel-bin/tensorflow/libtensorflow_framework.so ../tf_test/lib/
+$ cp /tmp/proto/lib/libprotobuf.a ../tf_test/lib/
+
+$ mkdir -p ../tf_test/include/tensorflow
+$ cp -r bazel-genfiles/* ../tf_test/include/
+$ cp -r tensorflow/cc ../tf_test/include/tensorflow
+$ cp -r tensorflow/core ../tf_test/include/tensorflow
+$ cp -r third_party ../tf_test/include
+$ cp -r /tmp/proto/include/* ../tf_test/include
+$ cp -r /tmp/eigen/include/eigen3/* ../tf_test/include
+
+// STEP 3
+// Compile the test project
+
+$ cd ../tf_test/
+$ find . -name "*.cc" -type f -delete
+$ g++ -std=c++11 -Wl,-rpath='$ORIGIN/lib' -Iinclude -Llib test.cpp -ltensorflow_cc -ltensorflow_framework -o exec
+
+// Execute your program 
+$ ./exec
+
+
+
+
