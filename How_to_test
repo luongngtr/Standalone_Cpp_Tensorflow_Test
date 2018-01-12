@@ -79,7 +79,7 @@ $ cp -r /tmp/eigen/include/eigen3/* ../tf_test/include
 
 $ cd ../tf_test/
 $ find . -name "*.cc" -type f -delete
-$ g++ -std=c++11 -Wl,-rpath='$ORIGIN/lib' -Iinclude -Llib test.cpp -ltensorflow_cc -ltensorflow_framework -o exec
+$ g++ -std=c++11 -Wl,-rpath='$ORIGIN/lib' -Iinclude -Iinclude/nsync/public -Llib test.cpp -ltensorflow_cc -ltensorflow_framework -o exec
 
 // Execute your program 
 $ ./exec
